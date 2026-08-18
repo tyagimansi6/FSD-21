@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // function abes(){
+        //     document.write("<br>hein ji");
+        // }
+        // abes();
+        // abes();
+        // abes();
+        // function add(a,b){
+        //     document.write("<br>sum is: "+(a+b));
+        // }
+        // function sub(a,b){
+        //     document.write("<br>sub is: "+(a-b));
+        // }
+        // sub(100,20);
+        // add(10,20);
+        // const abes = () => hello; 
+        // document.write(abes());
+    const add = (a, b) => {
+    return a + b;
+};
+const subtract = (a, b) => {
+    return a - b;
+};
+const multiply = (a, b) => {
+    return a * b;
+};
+const divide = (a, b) => {
+    return a / b;
+};
+const calculator = (a, b, operation) => {
+    return operation(a, b);
+};
+document.write(calculator(10, 20, multiply));
+        </script>
+</body>
+</html>
