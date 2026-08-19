@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Shop</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background: white;
+        }
+        button {
+            padding: 8px 15px;
+            margin: 10px;
+        }
+        #total {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<h1>Welcome to Online Shop</h1>
+<button onclick="shopNow()">Shop Now</button>
+<div id="products" style="display:none;">
+    <h2>Products</h2>
+    <ul>
+        <script>
+            const products = [
+                {"name":"Wheat","price":100},
+                {"name":"Sugar","price":200},
+                {"name":"Salt","price":300},
+                {"name":"Garam Masala","price":300}
+            ];
+            for(let i=0;i<products.length;i++) {
+                document.write(
+                    '<li><input type="checkbox" class="product" data-name="' +
+                    products[i].name + '" data-price="' +
+                    products[i].price + '">' +
+                    products[i].name + ' - ' +
+                    products[i].price + ' rs</li>'
+                );
+            }
+        </script>
+    </ul>
+    <button onclick="calculateTotal()">Calculate Total</button>
+    <p id="total">Total: 0 rs</p>
+</div>
+<script>
+    function shopNow() {
+        document.getElementById("products").style.display = "block";
+    }
+    function calculateTotal() {
+        const items = document.querySelectorAll("#products li");
+        let total = 0;
+        let message = "Selected items:\n";
+
+        items.forEach(function(item) {
+            const checkbox = item.querySelector("input");
+
+            if(checkbox.checked) {
+                const price = Number(checkbox.dataset.price);
+                total += price;
+                message += checkbox.dataset.name + " - " + price + " rs\n";
+            }
+        });
+        document.getElementById("total").textContent = "Total: " + total + " rs";
+        alert(message + "\nTotal amount: " + total + " rs");
+    }
+</script>
+</body>
+</html>
