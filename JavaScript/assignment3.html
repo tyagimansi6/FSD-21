@@ -1,0 +1,642 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bus Booking System</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #eeeeee;
+        }
+
+        /* Main 600 x 600 container */
+        .container {
+            width: 600px;
+            min-height: 600px;
+            margin: auto;
+            padding: 15px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #aaa;
+        }
+
+        /* Bus Image */
+        .bus-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* Main Heading */
+        h1 {
+            text-align: center;
+            margin: 12px 0;
+        }
+
+        /* Boxes */
+        .box {
+            border: 2px solid #cccccc;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .box h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+
+        /* Labels */
+        label {
+            display: block;
+            margin-top: 8px;
+            font-weight: bold;
+        }
+
+        /* Input and Select */
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 9px;
+            margin-top: 5px;
+            border: 1px solid #999;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        /* Bus Options */
+        .bus-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .bus-option-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .bus-option-left label {
+            margin: 0;
+            font-weight: normal;
+        }
+
+        .bus-option input {
+            width: auto;
+        }
+
+        .price {
+            font-weight: bold;
+        }
+
+        /* Seats */
+        .seats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .seat {
+            border: 1px solid #999;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: normal;
+        }
+
+        .seat input {
+            width: auto;
+            margin-right: 5px;
+        }
+
+        /* Buy Button */
+        .buy-btn {
+            display: block;
+            margin: 20px auto 0;
+            padding: 10px 40px;
+            border: none;
+            border-radius: 6px;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .buy-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Booking Card */
+        #bookingCard {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            border: 2px solid #28a745;
+            border-radius: 8px;
+            background-color: #f8fff9;
+        }
+
+        #bookingCard h2 {
+            text-align: center;
+            margin-top: 0;
+        }
+
+        .booking-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .details {
+            flex: 1;
+        }
+
+        .details p {
+            margin: 7px 0;
+        }
+
+        .total-box {
+            min-width: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-left: 1px solid #ccc;
+            padding-left: 20px;
+        }
+
+        .total-title {
+            font-size: 14px;
+        }
+
+        .total-amount {
+            margin-top: 8px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #28a745;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <div class="container">
+
+        <!-- ================= BUS IMAGE ================= -->
+
+        <img
+            class="bus-image"
+            src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=800&q=80"
+            alt="Bus">
+
+
+        <!-- ================= TITLE ================= -->
+
+        <h1>Bus Booking System</h1>
+
+
+        <!-- ================= USER INFORMATION ================= -->
+
+        <div class="box">
+
+            <h2>User Information</h2>
+
+            <label for="username">Username</label>
+            <input
+                type="text"
+                id="username"
+                placeholder="Enter username">
+
+
+            <label for="age">Age</label>
+            <input
+                type="number"
+                id="age"
+                placeholder="Enter age">
+
+
+            <label for="aadhar">Aadhar No.</label>
+            <input
+                type="text"
+                id="aadhar"
+                placeholder="Enter Aadhar number">
+
+
+            <label for="city">Select Your City</label>
+
+            <select id="city">
+
+                <option value="">
+                    -- Select City --
+                </option>
+
+                <option value="Ghaziabad">
+                    Ghaziabad
+                </option>
+
+                <option value="Meerut">
+                    Meerut
+                </option>
+
+                <option value="Delhi">
+                    Delhi
+                </option>
+
+                <option value="Hapur">
+                    Hapur
+                </option>
+
+                <option value="Germany">
+                    Germany
+                </option>
+
+            </select>
+
+
+            <label for="journeyDate">
+                Journey Date
+            </label>
+
+            <input
+                type="date"
+                id="journeyDate">
+
+        </div>
+
+
+        <!-- ================= BUS INFORMATION ================= -->
+
+        <div class="box">
+
+            <h2>Bus Information</h2>
+
+
+            <!-- 1st AC -->
+
+            <div class="bus-option">
+
+                <div class="bus-option-left">
+
+                    <input
+                        type="radio"
+                        name="bus"
+                        id="acBus"
+                        value="1st AC Bus"
+                        data-price="2000">
+
+                    <label for="acBus">
+                        1st AC Bus
+                    </label>
+
+                </div>
+
+                <span class="price">
+                    ₹2000
+                </span>
+
+            </div>
+
+
+            <!-- Non AC -->
+
+            <div class="bus-option">
+
+                <div class="bus-option-left">
+
+                    <input
+                        type="radio"
+                        name="bus"
+                        id="nonAcBus"
+                        value="Non AC Bus"
+                        data-price="1500">
+
+                    <label for="nonAcBus">
+                        Non AC Bus
+                    </label>
+
+                </div>
+
+                <span class="price">
+                    ₹1500
+                </span>
+
+            </div>
+
+
+            <!-- ================= SEATS ================= -->
+
+            <label>
+                Select Your Seats
+            </label>
+
+            <div class="seats">
+
+                <label class="seat">
+                    <input
+                        type="checkbox"
+                        name="seat"
+                        value="Seat 1">
+                    Seat 1
+                </label>
+
+                <label class="seat">
+                    <input
+                        type="checkbox"
+                        name="seat"
+                        value="Seat 2">
+                    Seat 2
+                </label>
+
+                <label class="seat">
+                    <input
+                        type="checkbox"
+                        name="seat"
+                        value="Seat 3">
+                    Seat 3
+                </label>
+
+                <label class="seat">
+                    <input
+                        type="checkbox"
+                        name="seat"
+                        value="Seat 4">
+                    Seat 4
+                </label>
+
+                <label class="seat">
+                    <input
+                        type="checkbox"
+                        name="seat"
+                        value="Seat 5">
+                    Seat 5
+                </label>
+
+            </div>
+
+
+            <!-- ================= BUY BUTTON ================= -->
+
+            <button
+                class="buy-btn"
+                onclick="buyNow()">
+
+                Buy Now
+
+            </button>
+
+        </div>
+
+
+        <!-- ================= BOOKING CARD ================= -->
+
+        <div id="bookingCard">
+
+            <h2>
+                Booking Details
+            </h2>
+
+
+            <div class="booking-content">
+
+                <!-- Selected Information -->
+
+                <div class="details">
+
+                    <p>
+                        <b>Username:</b>
+                        <span id="showUsername"></span>
+                    </p>
+
+                    <p>
+                        <b>Age:</b>
+                        <span id="showAge"></span>
+                    </p>
+
+                    <p>
+                        <b>Aadhar No.:</b>
+                        <span id="showAadhar"></span>
+                    </p>
+
+                    <p>
+                        <b>City:</b>
+                        <span id="showCity"></span>
+                    </p>
+
+                    <p>
+                        <b>Journey Date:</b>
+                        <span id="showDate"></span>
+                    </p>
+
+                    <p>
+                        <b>Bus:</b>
+                        <span id="showBus"></span>
+                    </p>
+
+                    <p>
+                        <b>Seats:</b>
+                        <span id="showSeats"></span>
+                    </p>
+
+                </div>
+
+
+                <!-- Total Amount -->
+
+                <div class="total-box">
+
+                    <div class="total-title">
+                        Total Amount
+                    </div>
+
+                    <div class="total-amount">
+                        ₹<span id="showPrice">0</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        function buyNow() {
+
+            // Get user information
+
+            let username =
+                document.getElementById("username").value;
+
+            let age =
+                document.getElementById("age").value;
+
+            let aadhar =
+                document.getElementById("aadhar").value;
+
+            let city =
+                document.getElementById("city").value;
+
+            let date =
+                document.getElementById("journeyDate").value;
+
+
+            // Get selected bus
+
+            let selectedBus =
+                document.querySelector(
+                    'input[name="bus"]:checked'
+                );
+
+
+            // Get selected seats
+
+            let selectedSeats =
+                document.querySelectorAll(
+                    'input[name="seat"]:checked'
+                );
+
+
+            // ================= VALIDATION =================
+
+            if (username === "") {
+                alert("Please enter username.");
+                return;
+            }
+
+            if (age === "") {
+                alert("Please enter age.");
+                return;
+            }
+
+            if (aadhar === "") {
+                alert("Please enter Aadhar number.");
+                return;
+            }
+
+            if (city === "") {
+                alert("Please select your city.");
+                return;
+            }
+
+            if (date === "") {
+                alert("Please select journey date.");
+                return;
+            }
+
+            if (!selectedBus) {
+                alert("Please select a bus.");
+                return;
+            }
+
+            if (selectedSeats.length === 0) {
+                alert("Please select at least one seat.");
+                return;
+            }
+
+
+            // ================= GET SEATS =================
+
+            let seats = [];
+
+            selectedSeats.forEach(function (seat) {
+
+                seats.push(seat.value);
+
+            });
+
+
+            // ================= CALCULATE PRICE =================
+
+            let busPrice =
+                Number(
+                    selectedBus.getAttribute("data-price")
+                );
+
+
+            let numberOfSeats =
+                selectedSeats.length;
+
+
+            let totalAmount =
+                busPrice * numberOfSeats;
+
+
+            // ================= DISPLAY DATA =================
+
+            document.getElementById("showUsername")
+                .innerText = username;
+
+            document.getElementById("showAge")
+                .innerText = age;
+
+            document.getElementById("showAadhar")
+                .innerText = aadhar;
+
+            document.getElementById("showCity")
+                .innerText = city;
+
+            document.getElementById("showDate")
+                .innerText = formatDate(date);
+
+            document.getElementById("showBus")
+                .innerText = selectedBus.value;
+
+            document.getElementById("showSeats")
+                .innerText = seats.join(", ");
+
+            document.getElementById("showPrice")
+                .innerText = totalAmount;
+
+
+            // ================= SHOW BOOKING CARD =================
+
+            document.getElementById("bookingCard")
+                .style.display = "block";
+
+        }
+
+
+        // Convert YYYY-MM-DD to DD/MM/YYYY
+
+        function formatDate(date) {
+
+            let parts = date.split("-");
+
+            return parts[2] + "/" +
+                   parts[1] + "/" +
+                   parts[0];
+
+        }
+
+    </script>
+
+</body>
+
+</html>
+```
